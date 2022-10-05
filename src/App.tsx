@@ -14,14 +14,9 @@ function App() {
   return (
     <div>
       <h1>Recipe APP</h1>
-      <li>
-      <Link to="/add">
-        <button>Add new recipe</button>
-        </Link>
-      </li>
       <Routes>
         <Route path="/" element={<ListRecipes />} />
-        <Route path="add" element={< AddRecipes/>} />
+        <Route path="add" element={< AddRecipes />} />
       </Routes>
     </div>
   );
