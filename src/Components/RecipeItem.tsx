@@ -1,4 +1,9 @@
 export default function RecipeItem() {
+
+  const deleteRecipe = () => {
+    console.log("Send delete request with id")
+  };
+
   return (
     <div>
       <span> Recipe Title</span>
@@ -9,7 +14,7 @@ export default function RecipeItem() {
         <li>Ingredient 3</li>
       </ul>
       <button>Edit</button>
-      <button>Delete</button>
+      <button onClick={()=>deleteRecipe()}>Delete</button>
     </div>
   );
 }

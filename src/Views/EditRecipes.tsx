@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import InputField from "../Components/InputField";
 
@@ -6,6 +6,10 @@ export default function EditRecipes() {
   const [editTitle, setEditTitle] = useState<string>("")
   const [editDescription, setEditDescription] = useState<string>("")
 
+  useEffect(() => {
+    console.log("Load existing data in form fields")
+  }, [])
+  
   const handleEditTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditTitle(e.target.value);
   };
@@ -33,7 +37,7 @@ export default function EditRecipes() {
       </div>
       <button>Save</button>
       <Link to="/">
-        <button>See all recipes</button>
+        <button>See all Recipes</button>
       </Link>
     </div>
   )

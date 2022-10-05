@@ -17,7 +17,12 @@ export default function AddRecipes() {
   };
 
   const addRecipe = () => {
-    console.log('send recipe to the server')
+    const newRecipe = {
+      title: addTitle,
+      description: addDescription,
+      ingredients
+    }
+    console.log('send recipe to the server', newRecipe)
   };
 
   return (

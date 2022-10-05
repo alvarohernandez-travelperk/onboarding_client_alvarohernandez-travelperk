@@ -18,6 +18,7 @@ export default function ListIngredients({ingredients, setIngredients}: ListIngre
     if (!existIngredient) {
       const newArray = [...ingredients, newIngredient];
       setIngredients(newArray)
+      setNewIngredient("");
     }
   };
 
