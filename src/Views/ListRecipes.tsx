@@ -5,9 +5,10 @@ import { Recipe } from '../Types/Recipe';
 
 interface ListRecipesProps {
   recipes: Recipe[];
+  fetchData: ()=> void
 }
 
-export default function ListRecipes({ recipes }: ListRecipesProps) {
+export default function ListRecipes({ recipes, fetchData }: ListRecipesProps) {
   return (
     <div>
       <Link to="/add">
@@ -15,7 +16,7 @@ export default function ListRecipes({ recipes }: ListRecipesProps) {
       </Link>
       <h2>List of Recipes</h2>
 
-      {recipes.length === 0 ? <p>Add new recipes!</p> : recipes.map(recipe => <RecipeItem key={recipe.id} recipe={recipe} />)}
+      {recipes.length === 0 ? <p>Add new recipes!</p> : recipes.map(recipe => <RecipeItem key={recipe.id} recipe={recipe} fetchData={fetchData}/>)}
     </div>
   )
 }

@@ -3,7 +3,11 @@ import ListIngredients from "../Components/ListIngredients";
 import InputField from "../Components/InputField";
 import { useState } from "react";
 
-export default function AddRecipes() {
+interface AddRecipesProps {
+  fetchData: ()=> void
+}
+
+export default function AddRecipes({fetchData}: AddRecipesProps) {
   const [addTitle, setAddTitle] = useState<string>("")
   const [addDescription, setAddDescription] = useState<string>("")
   const [ingredients, setIngredients] = useState<string[]>([])
@@ -36,6 +40,7 @@ export default function AddRecipes() {
     });
     const json = await data.json();
     console.log(json, "response")
+    fetchData();
   };
 
   return (

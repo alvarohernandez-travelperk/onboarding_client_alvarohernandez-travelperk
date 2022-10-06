@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { Recipe } from './Types/Recipe';
 import AddRecipes from './Views/AddRecipes';
 import EditRecipes from './Views/EditRecipes';
@@ -10,11 +10,10 @@ function App() {
 
   const fetchURL = 'http://127.0.0.1:8000/api/recipe/recipes/';
 
-  const location = useLocation();
 
-  const fetchData = async (url: string) => {
+  const fetchData = async () => {
     try {
-      const data = await fetch(url);
+      const data = await fetch(fetchURL);
       const json = await data.json();
       setRecipes(json);
     } catch (error) {
@@ -24,16 +23,16 @@ function App() {
 
   useEffect(() => {
     console.log("Fetch data from backend")
-    fetchData(fetchURL)
-  }, [location])
+    fetchData()
+  }, [])
 
   return (
     <div>
       <h1>Recipe APP</h1>
       <Routes>
-        <Route path="/" element={<ListRecipes recipes={recipes}/>} />
-        <Route path="add" element={< AddRecipes />} />
-        <Route path={`edit/:id`} element={< EditRecipes recipes={recipes}/>} />
+        <Route path="/" element={<ListRecipes recipes={recipes} fetchData={fetchData}/>} />
+        <Route path="add" element={< AddRecipes fetchData={fetchData}/>} />
+        <Route path={`edit/:id`} element={< EditRecipes recipes={recipes} fetchData={fetchData}/>} />
       </Routes>
     </div>
   );

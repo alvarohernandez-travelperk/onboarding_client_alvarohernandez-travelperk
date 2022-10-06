@@ -3,9 +3,10 @@ import { Recipe } from "../Types/Recipe";
 
 interface RecipesItemProps {
   recipe: Recipe;
+  fetchData: ()=> void
 }
 
-export default function RecipeItem({ recipe }: RecipesItemProps) {
+export default function RecipeItem({ recipe, fetchData }: RecipesItemProps) {
 
   const { title, description, id, ingredients } = recipe;
 
@@ -17,10 +18,9 @@ export default function RecipeItem({ recipe }: RecipesItemProps) {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
-      },
+      }
     });
-    const json = await data.json();
-    console.log(json, "response")
+    fetchData()
   };
 
   return (

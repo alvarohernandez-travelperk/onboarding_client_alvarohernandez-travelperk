@@ -6,9 +6,10 @@ import { Recipe } from "../Types/Recipe";
 
 interface EditRecipesProps {
   recipes: Recipe[];
+  fetchData: ()=> void
 }
 
-export default function EditRecipes({ recipes }: EditRecipesProps) {
+export default function EditRecipes({ recipes, fetchData }: EditRecipesProps) {
   const [editTitle, setEditTitle] = useState<string>("")
   const [editDescription, setEditDescription] = useState<string>("")
   const [ingredients, setIngredients] = useState<string[]>([])
@@ -60,6 +61,7 @@ export default function EditRecipes({ recipes }: EditRecipesProps) {
     });
     const json = await data.json();
     console.log(json, "response")
+    fetchData()
   };
 
   return (
