@@ -1,20 +1,40 @@
-export default function RecipeItem() {
+import { Link } from "react-router-dom";
+import { Recipe } from "../Types/Recipe";
 
-  const deleteRecipe = () => {
+interface RecipesItemProps {
+  recipe: Recipe;
+}
+
+export default function RecipeItem({ recipe }: RecipesItemProps) {
+
+  const { title, description, id, ingredients } = recipe;
+
+
+  const deleteRecipe = async(id: number) => {
     console.log("Send delete request with id")
+    const data = await fetch(`http://127.0.0.1:8000/api/recipe/recipes/${id}/`, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    });
+    const json = await data.json();
+    console.log(json, "response")
   };
 
   return (
     <div>
-      <span> Recipe Title</span>
-      <span> Recipe Description</span>
+      <span>{title}</span>
+      <span>{description}</span>
       <ul>
-        <li>Ingredient 1</li>
-        <li>Ingredient 2</li>
-        <li>Ingredient 3</li>
+        {ingredients.map(ing => <li key={ing.name}>{ing.name}</li>)}
       </ul>
+      <Link to={`edit/${id}`}>
       <button>Edit</button>
-      <button onClick={()=>deleteRecipe()}>Delete</button>
+      </Link>
+ 
+      <button onClick={() => deleteRecipe(id)}>Delete</button>
     </div>
   );
 }

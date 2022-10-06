@@ -6,7 +6,7 @@ interface ListIngredientsProps {
   setIngredients: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-export default function ListIngredients({ingredients, setIngredients}: ListIngredientsProps) {
+export default function ListIngredients({ ingredients, setIngredients }: ListIngredientsProps) {
   const [newIngredient, setNewIngredient] = useState<string>("")
 
   const handleNewIngredient = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,28 +27,28 @@ export default function ListIngredients({ingredients, setIngredients}: ListIngre
     setIngredients(newArray)
   };
 
-  return (
-    <div>
-      <span>List of Ingredients</span>
+    return (
       <div>
-        <InputField
-          handleInput={handleNewIngredient}
-          value={newIngredient}
-          placeholder="Title here"
-          title="Title"
-        />
-        <button onClick={() => handleIngredients(newIngredient)}>Add Ingredient</button>
-      </div>
-      <ul>
-        {ingredients.map(ingredient => 
-          <li key={ingredient}>
-            {ingredient} 
-            <span  onClick={() => deleteIngredient(ingredient)}>
+        <span>List of Ingredients</span>
+        <div>
+          <InputField
+            handleInput={handleNewIngredient}
+            value={newIngredient}
+            placeholder="Title here"
+            title="Title"
+          />
+          <button onClick={() => handleIngredients(newIngredient)}>Add Ingredient</button>
+        </div>
+        <ul>
+          {ingredients.map(ingredient =>
+            <li key={ingredient}>
+              {ingredient}
+              <span onClick={() => deleteIngredient(ingredient)}>
                 X
-            </span>
-          </li>
-        )}
-      </ul>
-    </div>
-  );
+              </span>
+            </li>
+          )}
+        </ul>
+      </div>
+    );
 }
