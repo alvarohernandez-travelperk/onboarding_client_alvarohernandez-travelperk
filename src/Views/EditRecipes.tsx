@@ -44,7 +44,7 @@ export default function EditRecipes({ recipes, fetchData }: EditRecipesProps) {
   };
 
   const saveRecipe = async () => {
-    const ingredientsAPI: any = [];
+    const ingredientsAPI: {"name": string}[] = [];
     ingredients.map(ing => ingredientsAPI.push({ "name": ing }))
 
     const newRecipe = {
