@@ -3,10 +3,12 @@ import { Link, useParams } from "react-router-dom";
 import InputField from "../Components/InputField";
 import ListIngredients from "../Components/ListIngredients";
 import { Recipe } from "../Types/Recipe";
+import { Main, Button, FormCard, ButtonsBox } from '../Styles/Views';
+
 
 interface EditRecipesProps {
   recipes: Recipe[];
-  fetchData: ()=> void
+  fetchData: () => void
 }
 
 export default function EditRecipes({ recipes, fetchData }: EditRecipesProps) {
@@ -26,7 +28,6 @@ export default function EditRecipes({ recipes, fetchData }: EditRecipesProps) {
     if (recipe) {
       if (recipe.title) setEditTitle(recipe.title);
       if (recipe.description) setEditDescription(recipe.description);
-      console.log(recipe.ingredients)
       const ingredientsClient: string[] = [];
       recipe.ingredients.map(ing => ingredientsClient.push(ing.name))
       setIngredients(ingredientsClient)
@@ -43,8 +44,8 @@ export default function EditRecipes({ recipes, fetchData }: EditRecipesProps) {
   };
 
   const saveRecipe = async () => {
-    const ingredientsAPI:any = [];
-     ingredients.map(ing => ingredientsAPI.push({"name": ing}))
+    const ingredientsAPI: any = [];
+    ingredients.map(ing => ingredientsAPI.push({ "name": ing }))
 
     const newRecipe = {
       title: editTitle,
@@ -60,14 +61,13 @@ export default function EditRecipes({ recipes, fetchData }: EditRecipesProps) {
       body: JSON.stringify(newRecipe)
     });
     const json = await data.json();
-    console.log(json, "response")
     fetchData()
   };
 
   return (
-    <div>
-      <h2>Edit this Recipe</h2>
-      <div>
+    <Main>
+      <FormCard>
+        <h2>Edit this Recipe</h2>
         <InputField
           handleInput={handleEditTitle}
           value={editTitle}
@@ -81,11 +81,13 @@ export default function EditRecipes({ recipes, fetchData }: EditRecipesProps) {
           title="Description"
         />
         <ListIngredients ingredients={ingredients} setIngredients={setIngredients} />
-      </div>
-      <button onClick={() => saveRecipe()}>Save</button>
-      <Link to="/">
-        <button>See all Recipes</button>
-      </Link>
-    </div>
+      </FormCard>
+      <ButtonsBox>
+        <Button onClick={() => saveRecipe()}>Save</Button>
+        <Link to="/">
+          <Button>See all Recipes</Button>
+        </Link>
+      </ButtonsBox>
+    </Main>
   )
 }

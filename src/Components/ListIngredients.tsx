@@ -1,5 +1,8 @@
 import { useState } from "react";
 import InputField from "./InputField";
+import { Button, Main, InputBox, List } from '../Styles/ListIngredients'
+import { FaTrash } from 'react-icons/fa';
+
 
 interface ListIngredientsProps {
   ingredients: string[];
@@ -28,27 +31,27 @@ export default function ListIngredients({ ingredients, setIngredients }: ListIng
   };
 
     return (
-      <div>
-        <span>List of Ingredients</span>
-        <div>
+      <Main>
+        <span>List of Ingredients :</span>
+        <InputBox>
           <InputField
             handleInput={handleNewIngredient}
             value={newIngredient}
-            placeholder="Title here"
-            title="Title"
+            placeholder="Type name here"
+            title="Name"
           />
-          <button onClick={() => handleIngredients(newIngredient)}>Add Ingredient</button>
-        </div>
-        <ul>
+          <Button onClick={() => handleIngredients(newIngredient)}>Add Ingredient</Button>
+        </InputBox>
+        <List>
           {ingredients.map(ingredient =>
             <li key={ingredient}>
               {ingredient}
               <span onClick={() => deleteIngredient(ingredient)}>
-                X
+              <FaTrash />
               </span>
             </li>
           )}
-        </ul>
-      </div>
+        </List>
+      </Main>
     );
 }

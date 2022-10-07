@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import ListIngredients from "../Components/ListIngredients";
 import InputField from "../Components/InputField";
 import { useState } from "react";
+import { Main, Button, FormCard, ButtonsBox } from '../Styles/Views';
 
 interface AddRecipesProps {
   fetchData: ()=> void
@@ -29,7 +30,6 @@ export default function AddRecipes({fetchData}: AddRecipesProps) {
       description: addDescription,
       "ingredients": ingredientsAPI
     }
-    console.log('send recipe to the server', newRecipe)
     const data = await fetch("http://127.0.0.1:8000/api/recipe/recipes/", {
       method: 'POST',
       headers: {
@@ -39,14 +39,14 @@ export default function AddRecipes({fetchData}: AddRecipesProps) {
       body: JSON.stringify(newRecipe)
     });
     const json = await data.json();
-    console.log(json, "response")
     fetchData();
   };
 
   return (
-    <div>
-      <h2>Add new Recipes</h2>
-      <div>
+    <Main>
+  
+      <FormCard>
+      <h2>Add new Recipe</h2>
         <InputField
           handleInput={handleAddTitle}
           value={addTitle}
@@ -56,15 +56,18 @@ export default function AddRecipes({fetchData}: AddRecipesProps) {
         <InputField
           handleInput={handleAddDescription}
           value={addDescription}
-          placeholder="description of your recipe"
+          placeholder="Description of your recipe"
           title="Description"
         />
         <ListIngredients ingredients={ingredients} setIngredients={setIngredients} />
-      </div>
-      <button onClick={() => addRecipe()}>Create</button>
+      </FormCard>
+      <ButtonsBox>
+      <Button onClick={() => addRecipe()}>Create</Button>
       <Link to="/">
-        <button>See all recipes</button>
+        <Button>See all recipes</Button>
       </Link>
-    </div>
+      </ButtonsBox>
+   
+    </Main>
   )
 }

@@ -4,6 +4,7 @@ import { Recipe } from './Types/Recipe';
 import AddRecipes from './Views/AddRecipes';
 import EditRecipes from './Views/EditRecipes';
 import ListRecipes from './Views/ListRecipes';
+import { Header, Main } from './Styles/App';
 
 function App() {
   const [recipes, setRecipes] = useState<Recipe[]>([])
@@ -22,19 +23,20 @@ function App() {
   }
 
   useEffect(() => {
-    console.log("Fetch data from backend")
     fetchData()
   }, [])
 
   return (
-    <div>
-      <h1>Recipe APP</h1>
+    <Main>
+      <Header>
+        <h1>Recipe APP</h1>
+      </Header>
       <Routes>
-        <Route path="/" element={<ListRecipes recipes={recipes} fetchData={fetchData}/>} />
-        <Route path="add" element={< AddRecipes fetchData={fetchData}/>} />
-        <Route path={`edit/:id`} element={< EditRecipes recipes={recipes} fetchData={fetchData}/>} />
+        <Route path="/" element={<ListRecipes recipes={recipes} fetchData={fetchData} />} />
+        <Route path="add" element={< AddRecipes fetchData={fetchData} />} />
+        <Route path={`edit/:id`} element={< EditRecipes recipes={recipes} fetchData={fetchData} />} />
       </Routes>
-    </div>
+    </Main>
   );
 }
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Input, InputLabel, InputBox } from '../Styles/InputField'
 
 
 interface InputFieldProps {
@@ -10,12 +11,13 @@ interface InputFieldProps {
 
 export default function InputField({ placeholder, title, value, handleInput }: InputFieldProps) {
   return (
-    <span>
-      <label>{title}</label>
-<input
-      onChange={handleInput}
-      type="text"
-      value={value}
-      placeholder={placeholder}></input>    </span>
+    <InputBox>
+      <InputLabel>{title} :</InputLabel>
+      <Input
+        onChange={handleInput}
+        type="text"
+        value={value}
+        placeholder={placeholder}></Input>
+    </InputBox>
   )
 }

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { Recipe } from "../Types/Recipe";
+import { Card, Button, TextBox, TextBold, Text, IngredientsBox } from '../Styles/RecipeItem'
+import { FaTrash, FaEdit } from 'react-icons/fa';
 
 interface RecipesItemProps {
   recipe: Recipe;
@@ -12,7 +14,6 @@ export default function RecipeItem({ recipe, fetchData }: RecipesItemProps) {
 
 
   const deleteRecipe = async(id: number) => {
-    console.log("Send delete request with id")
     const data = await fetch(`http://127.0.0.1:8000/api/recipe/recipes/${id}/`, {
       method: 'DELETE',
       headers: {
@@ -24,17 +25,29 @@ export default function RecipeItem({ recipe, fetchData }: RecipesItemProps) {
   };
 
   return (
-    <div>
-      <span>{title}</span>
-      <span>{description}</span>
+    <Card>
+      <TextBox>
+        <TextBold>Title :</TextBold>
+        <Text>{title}</Text></TextBox>
+        <TextBox>
+        <TextBold>Description :</TextBold>
+        <Text>{description}</Text>
+      </TextBox>
+      <IngredientsBox>
+      <TextBold>Ingredients :</TextBold>
       <ul>
         {ingredients.map(ing => <li key={ing.name}>{ing.name}</li>)}
       </ul>
+        </IngredientsBox>
+
+      <div>
       <Link to={`edit/${id}`}>
-      <button>Edit</button>
+      <Button><FaEdit /></Button>
       </Link>
  
-      <button onClick={() => deleteRecipe(id)}>Delete</button>
-    </div>
+      <Button onClick={() => deleteRecipe(id)}> <FaTrash /></Button>
+      </div>
+
+    </Card>
   );
 }
