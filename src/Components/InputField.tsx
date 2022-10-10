@@ -14,6 +14,7 @@ export default function InputField({ placeholder, title, value, handleInput }: I
     <InputBox>
       <InputLabel data-testid="input-label">{title} :</InputLabel>
       <Input
+        data-testid="input-field"
         onChange={handleInput}
         type="text"
         value={value}

@@ -16,12 +16,21 @@ it("Snapshot Test Input Component", () => {
 });
 
 it("Renders right label text", () => {
-  const { getByTestId, getByText  } = render(<InputField
+  const { getByTestId  } = render(<InputField
     title="title-label"
     placeholder="placeholder"
     value="value"
     handleInput={handleInput} />);
   expect(getByTestId("input-label")).toHaveTextContent("title-label");
+});
+
+it("Displays the default value text", () => {
+  const { getByTestId  } = render(<InputField
+    title="title-label"
+    placeholder="placeholder"
+    value="value"
+    handleInput={handleInput} />);
+  expect(getByTestId("input-field")).toHaveDisplayValue("value");
 });
 
 
