@@ -12,7 +12,7 @@ interface InputFieldProps {
 export default function InputField({ placeholder, title, value, handleInput }: InputFieldProps) {
   return (
     <InputBox>
-      <InputLabel>{title} :</InputLabel>
+      <InputLabel data-testid="input-label">{title} :</InputLabel>
       <Input
         onChange={handleInput}
         type="text"
