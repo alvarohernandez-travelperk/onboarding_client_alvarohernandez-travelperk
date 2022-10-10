@@ -40,11 +40,11 @@ export default function ListIngredients({ ingredients, setIngredients }: ListIng
             placeholder="Type name here"
             title="Name"
           />
-          <Button onClick={() => handleIngredients(newIngredient)}>Add Ingredient</Button>
+          <Button data-testid="add-ingredient-button" onClick={() => handleIngredients(newIngredient)}>Add Ingredient</Button>
         </InputBox>
         <List>
           {ingredients.map(ingredient =>
-            <li key={ingredient}>
+            <li data-testid="ingredient-item" key={ingredient}>
               {ingredient}
               <span onClick={() => deleteIngredient(ingredient)}>
               <FaTrash />

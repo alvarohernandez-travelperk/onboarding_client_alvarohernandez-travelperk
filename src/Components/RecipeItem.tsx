@@ -28,10 +28,10 @@ export default function RecipeItem({ recipe, fetchData }: RecipesItemProps) {
     <Card>
       <TextBox>
         <TextBold>Title :</TextBold>
-        <Text>{title}</Text></TextBox>
+        <Text data-testid="recipe-item-title">{title}</Text></TextBox>
         <TextBox>
         <TextBold>Description :</TextBold>
-        <Text>{description}</Text>
+        <Text data-testid="recipe-item-description">{description}</Text>
       </TextBox>
       <IngredientsBox>
       <TextBold>Ingredients :</TextBold>
