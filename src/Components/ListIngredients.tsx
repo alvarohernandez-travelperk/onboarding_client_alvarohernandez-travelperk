@@ -13,6 +13,7 @@ export default function ListIngredients({ ingredients, setIngredients }: ListIng
   const [newIngredient, setNewIngredient] = useState<string>("")
 
   const handleNewIngredient = (e: React.ChangeEvent<HTMLInputElement>) => {
+
     setNewIngredient(e.target.value);
   };
 

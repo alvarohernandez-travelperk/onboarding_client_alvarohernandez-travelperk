@@ -1,4 +1,5 @@
 import React from 'react'
+import dompurify from 'dompurify';
 import { Input, InputLabel, InputBox } from '../Styles/InputField'
 
 
@@ -10,6 +11,7 @@ interface InputFieldProps {
 }
 
 export default function InputField({ placeholder, title, value, handleInput }: InputFieldProps) {
+  const sanitizedValue = dompurify.sanitize(value);
   return (
     <InputBox>
       <InputLabel data-testid="input-label">{title} :</InputLabel>
@@ -17,7 +19,7 @@ export default function InputField({ placeholder, title, value, handleInput }: I
         data-testid="input-field"
         onChange={handleInput}
         type="text"
-        value={value}
+        value={sanitizedValue}
         placeholder={placeholder}></Input>
     </InputBox>
   )
