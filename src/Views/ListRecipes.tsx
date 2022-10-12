@@ -1,7 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import RecipeItem from '../Components/RecipeItem'
-import { Main, Button, ButtonsBox } from '../Styles/Views';
+import { Link } from 'react-router-dom';
+import RecipeItem from '../Components/RecipeItem';
+import { Button, ButtonsBox, Main } from '../Styles/Views';
 import { Recipe } from '../Types/Recipe';
 
 interface ListRecipesProps {

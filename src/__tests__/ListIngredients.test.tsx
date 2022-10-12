@@ -1,7 +1,6 @@
-import React from 'react';
-import { render, cleanup, screen } from '@testing-library/react';
-import ListIngredients from '../Components/ListIngredients';
+import { cleanup, render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+import ListIngredients from '../Components/ListIngredients';
 
 const setIngredients = jest.fn();
 const mockIngredients = ["tomato", 'pasta', "carrots", "parmesan", "meat", "celery"]

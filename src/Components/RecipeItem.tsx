@@ -1,7 +1,7 @@
+import { FaEdit, FaTrash } from 'react-icons/fa';
 import { Link } from "react-router-dom";
+import { Button, Card, IngredientsBox, Text, TextBold, TextBox } from '../Styles/RecipeItem';
 import { Recipe } from "../Types/Recipe";
-import { Card, Button, TextBox, TextBold, Text, IngredientsBox } from '../Styles/RecipeItem'
-import { FaTrash, FaEdit } from 'react-icons/fa';
 
 interface RecipesItemProps {
   recipe: Recipe;

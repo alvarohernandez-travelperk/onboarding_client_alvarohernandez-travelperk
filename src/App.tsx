@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { Header, Main } from './Styles/App';
 import { Recipe } from './Types/Recipe';
 import AddRecipes from './Views/AddRecipes';
 import EditRecipes from './Views/EditRecipes';
 import ListRecipes from './Views/ListRecipes';
-import { Header, Main } from './Styles/App';
 
 function App() {
   const [recipes, setRecipes] = useState<Recipe[]>([])

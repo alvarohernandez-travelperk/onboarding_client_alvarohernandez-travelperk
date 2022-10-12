@@ -1,6 +1,6 @@
 import { FaCheck } from 'react-icons/fa';
 import { SuccessBox } from '../Styles/StatusMessage';
-import { Status } from "../Types/Status"
+import { Status } from "../Types/Status";
 
 interface StatusMessageProps {
   status: Status;

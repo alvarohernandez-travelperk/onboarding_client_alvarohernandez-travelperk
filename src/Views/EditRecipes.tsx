@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import InputField from "../Components/InputField";
 import ListIngredients from "../Components/ListIngredients";
-import { Recipe } from "../Types/Recipe";
-import { Main, Button, FormCard, ButtonsBox } from '../Styles/Views';
 import StatusMessage from "../Components/StatusMessage";
+import { Button, ButtonsBox, FormCard, Main } from '../Styles/Views';
+import { Recipe } from "../Types/Recipe";
 import { Status } from "../Types/Status";
 
 

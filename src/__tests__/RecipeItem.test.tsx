@@ -1,7 +1,6 @@
-import React from 'react';
-import { render, cleanup } from '@testing-library/react';
-import RecipeItem from '../Components/RecipeItem';
+import { cleanup, render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+import RecipeItem from '../Components/RecipeItem';
 
 const fetchData = jest.fn();
 const mockRecipe = {

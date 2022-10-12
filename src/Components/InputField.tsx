@@ -1,6 +1,6 @@
-import React from 'react'
 import dompurify from 'dompurify';
-import { Input, InputLabel, InputBox } from '../Styles/InputField'
+import React from 'react';
+import { Input, InputBox, InputLabel } from '../Styles/InputField';
 
 
 interface InputFieldProps {

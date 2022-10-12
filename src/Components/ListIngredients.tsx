@@ -1,7 +1,7 @@
 import { useState } from "react";
-import InputField from "./InputField";
-import { Button, Main, InputBox, List } from '../Styles/ListIngredients'
 import { FaTrash } from 'react-icons/fa';
+import { Button, InputBox, List, Main } from '../Styles/ListIngredients';
+import InputField from "./InputField";
 
 
 interface ListIngredientsProps {

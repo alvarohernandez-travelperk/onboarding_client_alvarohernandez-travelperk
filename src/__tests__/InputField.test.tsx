@@ -1,5 +1,4 @@
-import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { cleanup, render } from '@testing-library/react';
 import InputField from '../Components/InputField';
 
 const handleInput = jest.fn();

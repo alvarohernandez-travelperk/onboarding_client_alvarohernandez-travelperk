@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
-import ListIngredients from "../Components/ListIngredients";
-import InputField from "../Components/InputField";
 import { useState } from "react";
-import { Main, Button, FormCard, ButtonsBox } from '../Styles/Views';
+import { Link } from "react-router-dom";
+import InputField from "../Components/InputField";
+import ListIngredients from "../Components/ListIngredients";
 import StatusMessage from "../Components/StatusMessage";
+import { Button, ButtonsBox, FormCard, Main } from '../Styles/Views';
 import { Status } from "../Types/Status";
 
 interface AddRecipesProps {
