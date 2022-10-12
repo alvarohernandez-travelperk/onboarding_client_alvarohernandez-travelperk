@@ -18,7 +18,7 @@ export default function EditRecipes({ recipes, fetchData }: EditRecipesProps) {
   const [editDescription, setEditDescription] = useState<string>("")
   const [ingredients, setIngredients] = useState<string[]>([])
   const [id, setId] = useState<number | undefined>(undefined)
-  const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false)
+  const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(true)
 
   const params = useParams();
 
