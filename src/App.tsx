@@ -9,7 +9,7 @@ import { Header, Main } from './Styles/App';
 function App() {
   const [recipes, setRecipes] = useState<Recipe[]>([])
 
-  const fetchURL = 'http://127.0.0.1:8000/api/recipe/recipes/';
+  const fetchURL = process.env.REACT_APP_URL as string;
 
 
   const fetchData = async () => {

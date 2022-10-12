@@ -19,7 +19,7 @@ export default function ListIngredients({ ingredients, setIngredients }: ListIng
 
   const handleIngredients = (newIngredient: string) => {
     const existIngredient = ingredients.find(el => el === newIngredient)
-    if (!existIngredient) {
+    if (!existIngredient && newIngredient !== "") {
       const newArray = [...ingredients, newIngredient];
       setIngredients(newArray)
       setNewIngredient("");

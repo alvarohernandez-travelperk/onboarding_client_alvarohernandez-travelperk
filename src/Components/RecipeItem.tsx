@@ -14,7 +14,7 @@ export default function RecipeItem({ recipe, fetchData }: RecipesItemProps) {
 
 
   const deleteRecipe = async(id: number) => {
-    const data = await fetch(`http://127.0.0.1:8000/api/recipe/recipes/${id}/`, {
+    const data = await fetch(`${process.env.REACT_APP_URL}${id}/`, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',

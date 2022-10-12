@@ -4,6 +4,8 @@ import InputField from "../Components/InputField";
 import ListIngredients from "../Components/ListIngredients";
 import { Recipe } from "../Types/Recipe";
 import { Main, Button, FormCard, ButtonsBox } from '../Styles/Views';
+import StatusMessage from "../Components/StatusMessage";
+import { Status } from "../Types/Status";
 
 
 interface EditRecipesProps {
@@ -16,6 +18,7 @@ export default function EditRecipes({ recipes, fetchData }: EditRecipesProps) {
   const [editDescription, setEditDescription] = useState<string>("")
   const [ingredients, setIngredients] = useState<string[]>([])
   const [id, setId] = useState<number | undefined>(undefined)
+  const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false)
 
   const params = useParams();
 
@@ -52,7 +55,7 @@ export default function EditRecipes({ recipes, fetchData }: EditRecipesProps) {
       description: editDescription,
       "ingredients": ingredientsAPI
     }
-    const data = await fetch(`http://127.0.0.1:8000/api/recipe/recipes/${id}/`, {
+    const data = await fetch(`${process.env.REACT_APP_URL}${id}/`, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',
@@ -60,9 +63,17 @@ export default function EditRecipes({ recipes, fetchData }: EditRecipesProps) {
       },
       body: JSON.stringify(newRecipe)
     });
-    const json = await data.json();
+    await data.json();
+    if (data.status === 200) {
+      showMessage();
+    }
     fetchData()
   };
+
+  const showMessage = () => {
+    setShowSuccessMessage(true);
+    setTimeout(() => setShowSuccessMessage(false), 5000);
+  }
 
   return (
     <Main>
@@ -84,6 +95,7 @@ export default function EditRecipes({ recipes, fetchData }: EditRecipesProps) {
       </FormCard>
       <ButtonsBox>
         <Button onClick={() => saveRecipe()}>Save</Button>
+        {showSuccessMessage ? <StatusMessage status={Status.Success} message="Recipe edited successfully!" /> : null}
         <Link to="/">
           <Button>See all Recipes</Button>
         </Link>

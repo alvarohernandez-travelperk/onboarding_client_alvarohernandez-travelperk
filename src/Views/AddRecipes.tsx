@@ -3,15 +3,18 @@ import ListIngredients from "../Components/ListIngredients";
 import InputField from "../Components/InputField";
 import { useState } from "react";
 import { Main, Button, FormCard, ButtonsBox } from '../Styles/Views';
+import StatusMessage from "../Components/StatusMessage";
+import { Status } from "../Types/Status";
 
 interface AddRecipesProps {
-  fetchData: ()=> void
+  fetchData: () => void
 }
 
-export default function AddRecipes({fetchData}: AddRecipesProps) {
+export default function AddRecipes({ fetchData }: AddRecipesProps) {
   const [addTitle, setAddTitle] = useState<string>("")
   const [addDescription, setAddDescription] = useState<string>("")
   const [ingredients, setIngredients] = useState<string[]>([])
+  const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false)
 
   const handleAddTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAddTitle(e.target.value);
@@ -30,7 +33,7 @@ export default function AddRecipes({fetchData}: AddRecipesProps) {
       description: addDescription,
       "ingredients": ingredientsAPI
     }
-    const data = await fetch("http://127.0.0.1:8000/api/recipe/recipes/", {
+    const data = await fetch(process.env.REACT_APP_URL as string, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -38,15 +41,23 @@ export default function AddRecipes({fetchData}: AddRecipesProps) {
       },
       body: JSON.stringify(newRecipe)
     });
-    const json = await data.json();
+    await data.json();
+    if (data.status === 201) {
+      showMessage();
+    }
     fetchData();
   };
 
+  const showMessage = () => {
+    setShowSuccessMessage(true);
+    setTimeout(() => setShowSuccessMessage(false), 5000);
+  }
+
   return (
     <Main>
-  
+
       <FormCard>
-      <h2>Add new Recipe</h2>
+        <h2>Add new Recipe</h2>
         <InputField
           handleInput={handleAddTitle}
           value={addTitle}
@@ -62,12 +73,13 @@ export default function AddRecipes({fetchData}: AddRecipesProps) {
         <ListIngredients ingredients={ingredients} setIngredients={setIngredients} />
       </FormCard>
       <ButtonsBox>
-      <Button onClick={() => addRecipe()}>Create</Button>
-      <Link to="/">
-        <Button>See all recipes</Button>
-      </Link>
+        <Button onClick={() => addRecipe()}>Create</Button>
+        {showSuccessMessage ? <StatusMessage status={Status.Success} message="Recipe created successfully!" /> : null}
+        <Link to="/">
+          <Button>See all recipes</Button>
+        </Link>
       </ButtonsBox>
-   
+
     </Main>
   )
 }
