@@ -18,7 +18,7 @@ export default function EditRecipes({ recipes, fetchData }: EditRecipesProps) {
   const [editDescription, setEditDescription] = useState<string>("")
   const [ingredients, setIngredients] = useState<string[]>([])
   const [id, setId] = useState<number | undefined>(undefined)
-  const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(true)
+  const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false)
 
   const params = useParams();
 
@@ -47,7 +47,7 @@ export default function EditRecipes({ recipes, fetchData }: EditRecipesProps) {
   };
 
   const saveRecipe = async () => {
-    const ingredientsAPI: {"name": string}[] = [];
+    const ingredientsAPI: { "name": string }[] = [];
     ingredients.map(ing => ingredientsAPI.push({ "name": ing }))
 
     const newRecipe = {
