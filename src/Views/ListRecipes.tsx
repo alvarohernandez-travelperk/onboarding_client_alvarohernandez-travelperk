@@ -1,11 +1,25 @@
-import React from 'react'
-import RecipeItem from '../Components/Recipe'
+import { Link } from 'react-router-dom';
+import RecipeItem from '../Components/RecipeItem';
+import { Button, ButtonsBox, Main } from '../Styles/Views';
+import { Recipe } from '../Types/Recipe';
 
-export default function ListRecipes() {
+interface ListRecipesProps {
+  recipes: Recipe[];
+  fetchData: () => void
+}
+
+export default function ListRecipes({ recipes, fetchData }: ListRecipesProps) {
   return (
-    <div>
-      <h2>List of Recipes</h2>
-      <RecipeItem />
-    </div>
+    <Main>
+      <div>
+        <h2>List of Recipes</h2>
+        {recipes.length === 0 ? <p>Add new recipes!</p> : recipes.map(recipe => <RecipeItem key={recipe.id} recipe={recipe} fetchData={fetchData} />)}
+      </div>
+      <ButtonsBox>
+        <Link to="/add">
+          <Button>Add new recipe</Button>
+        </Link>
+      </ButtonsBox>
+    </Main>
   )
 }
